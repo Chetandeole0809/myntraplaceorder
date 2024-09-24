@@ -1,6 +1,8 @@
 package EpisapGrp.EpisapArt;
 
+import java.security.PublicKey;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -13,8 +15,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import net.bytebuddy.asm.Advice.Return;
+
 
 public class MyntraDemo {
+	public WebDriver driver;
 
 	public static void main(String[] args) throws InterruptedException {
 		
@@ -48,103 +53,40 @@ public class MyntraDemo {
 	                // Locate the list of products
 	                List<WebElement> productList = driver.findElements(By.cssSelector(".results-base")); // Adjust based on actual class name
 
-	                WebElement product = driver.findElement(By.cssSelector("li[id='26902294']"));
+	                WebElement product = driver.findElement(By.cssSelector("li[id='28985188']"));
 	                product.click();
 	                
 	                Thread.sleep(2000);
-	              //  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".pdp-pdp-container")));
+	                String oldTab = driver.getWindowHandle();
+	              
+	                ArrayList<String> newTab = new ArrayList<String>(driver.getWindowHandles());
+	                newTab.remove(oldTab);
+	                // change focus to new tab
+	                driver.switchTo().window(newTab.get(0));
+	             
+	                WebElement SelectSize =  driver.findElement(By.xpath("//*[text()='S']"));
+	                SelectSize.click();
 	                
-	                //Select Size
+	                WebElement AddToBag = driver.findElement(By.cssSelector(".pdp-add-to-bag.pdp-button.pdp-flex.pdp-center"));
+	                AddToBag.click();
 	                
-	                //List<WebElement> SelectSize = driver.findElements(By.cssSelector(".size-buttons-size-buttons-error.size-buttons-size-buttons"));
+	                System.out.println("Product added to the bag successfully...");
 	                
-	               
-//	                for (WebElement option : SelectSize) {
-//	                    if (option.getText().equals("XXL")) {
-//	                        option.click(); // Click on the XXL option
-//	                        //System.out.println("Size Slected");
-//	                        break; // Exit the loop after clicking
-//	                    }
-//	                }
-	                
-	                
-	                
-	               List <WebElement> SelectSize =  driver.findElements(By.xpath("//*[@class=\"size-buttons-size-button size-buttons-size-button-default\"]"));
-	                
-	               for (WebElement option : SelectSize) {
-	                    if (option.getText().equals("XXL")) {
-	                        option.click(); // Click on the XXL option
-	                        //System.out.println("Size Slected");
-	                        break; // Exit the loop after clicking
-	                    }
-	                }
-	                
-//	                WebElement SelectSize = driver.findElement(By.cssSelector(".size-buttons-size-button.size-buttons-size-button-default"));
-//	                SelectSize.click();
-//	                WebElement AddToCart = driver.findElement(By.cssSelector(".pdp-add-to-bag.pdp-button.pdp-flex.pdp-center"));
-//	                AddToCart.click();
-	                
-//	                if (SelectSize.contains("XXL")) {
-//	                    // Click on the second product
-//	                    driver.findElement(By.xpath("//p[normalize-space()='XXL']")).click();
-//	                } else {
-//	                    System.out.println("Sixe is not Available");
-//	                }
-	                
-	                // Click on Add To Bag button
-//	                WebElement AddToCart = driver.findElement(By.cssSelector(".pdp-add-to-bag.pdp-button.pdp-flex.pdp-center"));
-//	                AddToCart.click();
-	                
-	                // 
+//	                WebElement Success = driver.findElement(By.xpath("//*[text()='Added to bag']"));
+//	                wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[text()='Added to bag']"))));
+//	                System.out.println(driver.findElement(By.xpath("//*[text()='Added to bag']")));
 	                
 	                
-	                // Check if there are at least two products
-//	                if (productList.contains(product)) {
-//	                    // Click on the second product
-//	                    productList.get(1).click(); // Index 1 for the second product
-//	                } else {
-//	                    System.out.println("Not enough products found.");
-//	                }
 	                
-	               
-
-	                // Wait for the product page to load (optional)
-	              //  wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".pdp-action-container.pdp-fixed"))); // Adjust based on actual identifier
-
-					
-	            // Wait until suggestions are visible
-//	        	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-//	            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".desktop-autoSuggest.desktop-showContent")));
-
-	            // Locate the suggestions
-	            //List<WebElement> suggestionItems = driver.findElements(By.cssSelector(".desktop-autoSuggest.desktop-showContent"));
-
-	            // Select the first suggestion (adjust the index as needed)
-//	            if (!suggestionItems.isEmpty()) 
-//	            {
-//	                suggestionItems.get(0).click();
-//	                
-//	                wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".search-searchProductsContainer.row-base")));
-//	                List<WebElement> getListOfProducts = driver.findElements(By.cssSelector(".search-searchProductsContainer.row-base"));
-//	                if (!getListOfProducts.isEmpty()) 
-//	                {
-//	                	getListOfProducts.get().click();
-//	                
-//	                }
-//	                System.out.println("List Of Products");
-//	                System.out.println(getListOfProducts);
-//					}
 	            
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        } finally {
 	            // Close the browser
 	          
-	       //driver.quit();
-		
-	            
-	            
+	      // driver.quit();
+	        }
+	        
 	}
-
-}
+	    
 }
