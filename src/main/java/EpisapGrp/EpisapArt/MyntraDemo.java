@@ -76,7 +76,13 @@ public class MyntraDemo {
 //	                wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//*[text()='Added to bag']"))));
 //	                System.out.println(driver.findElement(By.xpath("//*[text()='Added to bag']")));
 	                
+	                Thread.sleep(2000);
 	                
+	                driver.findElement(By.xpath("//*[@class=\"desktop-cart\"]")).click();
+	                
+	                WebElement Success = driver.findElement(By.xpath("//*[@class=\"itemBlock-base-leftBlock\"]"));
+	                
+	                driver.findElement(By.xpath("//*[text()='PLACE ORDER']")).click();
 	                
 	            
 	        } catch (Exception e) {
