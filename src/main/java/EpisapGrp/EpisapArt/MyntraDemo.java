@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -78,11 +79,49 @@ public class MyntraDemo {
 	                
 	                Thread.sleep(2000);
 	                
-	                driver.findElement(By.xpath("//*[@class=\"desktop-cart\"]")).click();
-	                
-	                WebElement Success = driver.findElement(By.xpath("//*[@class=\"itemBlock-base-leftBlock\"]"));
-	                
-	                driver.findElement(By.xpath("//*[text()='PLACE ORDER']")).click();
+	               WebElement OpenBag = driver.findElement(By.cssSelector("a[class='desktop-cart'] span[class='desktop-userTitle']"));
+	               OpenBag.click();
+	               
+	               WebElement element = driver.findElement(By.xpath("//*[text()='BUY NOW WITH EARLY ACCESS']"));
+
+	               // Scroll to the element using JavaScript
+	               JavascriptExecutor js = (JavascriptExecutor) driver;
+	               js.executeScript("arguments[0].scrollIntoView(true);", element);
+
+	               // Optional: wait for a moment to see the scroll effect
+	               Thread.sleep(2000);
+
+	               // Now you can interact with the element (if needed)
+	               element.click();
+	               
+	               WebElement BuyOption = driver.findElement(By.cssSelector(".modal-base-modal.priorityCheckoutModal-base-modal"));
+	               
+	               wait.until(ExpectedConditions.visibilityOf(BuyOption));
+	               
+	               WebElement SelectBuyOption = driver.findElement(By.xpath("//*[@id=\"earlyCheckout\"]"));
+	               
+	               SelectBuyOption.click(); 
+	               
+	               WebElement CheckBox = driver.findElement(By.cssSelector(".priorityCheckoutModal-base-icon"));
+	               CheckBox.click();
+	               
+	             //  wait.until(ExpectedConditions.elementToBeSelected(CheckBox));
+	               Thread.sleep(2000);
+	               
+	                // change focus to new tab
+	              //  driver.switchTo().window(newTab.get(0));
+	               driver.findElement(By.)
+	            
+	               
+	               
+	               
+	             //  HitConfirmButton.click();
+	               
+	               
+//	                
+//	                WebElement Success = driver.findElement(By.xpath("//*[@class=\"itemBlock-base-leftBlock\"]"));
+//	                
+//	                driver.findElement(By.xpath("//*[text()='PLACE ORDER']")).click();
 	                
 	            
 	        } catch (Exception e) {
@@ -90,9 +129,8 @@ public class MyntraDemo {
 	        } finally {
 	            // Close the browser
 	          
-	      // driver.quit();
-	        }
-	        
-	}
+	       //driver.quit();
+	        }   
+	  }
 	    
 }
