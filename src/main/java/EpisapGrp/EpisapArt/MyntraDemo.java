@@ -81,7 +81,7 @@ public class MyntraDemo {
 	                
 	               WebElement OpenBag = driver.findElement(By.cssSelector("a[class='desktop-cart'] span[class='desktop-userTitle']"));
 	               OpenBag.click();
-	               
+	             /*  
 	               WebElement element = driver.findElement(By.xpath("//*[text()='BUY NOW WITH EARLY ACCESS']"));
 
 	               // Scroll to the element using JavaScript
@@ -108,20 +108,17 @@ public class MyntraDemo {
 	             //  wait.until(ExpectedConditions.elementToBeSelected(CheckBox));
 	               Thread.sleep(2000);
 	               
-	                // change focus to new tab
-	              //  driver.switchTo().window(newTab.get(0));
-	               driver.findElement(By.)
-	            
+	               HitConfirmButton.click();
 	               
+	               */
 	               
+	                //WebElement Success = driver.findElement(By.xpath("//*[@class=\"itemBlock-base-leftBlock\"]"));
+	                
 	               
-	             //  HitConfirmButton.click();
-	               
-	               
-//	                
-//	                WebElement Success = driver.findElement(By.xpath("//*[@class=\"itemBlock-base-leftBlock\"]"));
-//	                
-//	                driver.findElement(By.xpath("//*[text()='PLACE ORDER']")).click();
+	               WebElement PlaceOrderButton = driver.findElement(By.xpath("//*[text()='PLACE ORDER']"));
+	               wait.until(ExpectedConditions.visibilityOf(PlaceOrderButton));
+	                              
+	               PlaceOrderButton.click();
 	                
 	            
 	        } catch (Exception e) {
